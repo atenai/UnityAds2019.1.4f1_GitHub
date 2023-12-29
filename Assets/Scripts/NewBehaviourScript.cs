@@ -1,9 +1,12 @@
 ﻿using UnityEngine;
+using System;
+
 
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
+[RequireComponent(typeof(Animator))]
 public class NewBehaviourScript : MonoBehaviour
 {
     [Range(1, 10)]
@@ -30,12 +33,56 @@ public class NewBehaviourScript : MonoBehaviour
 
     void RandomNumber()
     {
-        number = Random.Range(0, 100);
+        number = UnityEngine.Random.Range(0, 100);
     }
 
     void ResetNumber()
     {
         number = 0;
+    }
+
+    public Color color1;
+
+    [ColorUsage(false)]
+    public Color color2;
+
+    [ColorUsage(true, true, 0, 8, 0.125f, 3)]
+    public Color color3;
+
+    [Header("Player Settings")]
+    public Player player;
+
+    [Serializable]
+    public class Player
+    {
+        public string name;
+
+        [Range(1, 100)]
+        public int hp;
+    }
+
+    [Header("Game Settings")]
+    public Color background;
+
+    [Space(16)]
+    public string str1;
+
+    [Space(48)]
+    public string str2;
+
+    [Tooltip("これはツールチップです")]
+    public long tooltip;
+
+    public string str1_2;
+
+    //[HideInInspector]
+    public string str2_2;
+
+    Animator animator;
+
+    void Awake()
+    {
+        animator = GetComponent<Animator>();
     }
 
     void OnEnable()
