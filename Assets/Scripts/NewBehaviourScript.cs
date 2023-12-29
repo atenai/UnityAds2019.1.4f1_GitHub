@@ -18,6 +18,26 @@ public class NewBehaviourScript : MonoBehaviour
     [Range(1, 10)]
     public double num4 = 1;
 
+    [Multiline(5)]
+    public string multiline = "あいうえおかきくけこさしすせそたちつてとなにぬねのまみむめも";
+
+    [TextArea(3, 5)]
+    public string textArea = "あいうえおかきくけこさしすせそたちつてとなにぬねのまみむめも";
+
+    [ContextMenuItem("Random", "RandomNumber")]
+    [ContextMenuItem("Reset", "ResetNumber")]
+    public int number;
+
+    void RandomNumber()
+    {
+        number = Random.Range(0, 100);
+    }
+
+    void ResetNumber()
+    {
+        number = 0;
+    }
+
     void OnEnable()
     {
 #if UNITY_EDITOR
