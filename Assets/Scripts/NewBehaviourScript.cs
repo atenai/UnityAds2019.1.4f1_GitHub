@@ -7,7 +7,7 @@ using UnityEditor;
 #endif
 
 [RequireComponent(typeof(Animator))]
-public class NewBehaviourScript : MonoBehaviour
+public class NewBehaviourScript : Base
 {
     [Range(1, 10)]
     public int num1 = 1;
@@ -79,6 +79,10 @@ public class NewBehaviourScript : MonoBehaviour
     public string str2_2;
 
     Animator animator;
+
+    [SerializeField]
+    //[RenamedSerializedData("hoge")]//←このアトリビュートは無い
+    string fuga;
 
     void Awake()
     {
