@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System;
 
-
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
 
+[ExecuteAlways]
 [RequireComponent(typeof(Animator))]
 public class NewBehaviourScript : Base
 {
@@ -84,9 +84,36 @@ public class NewBehaviourScript : Base
     //[RenamedSerializedData("hoge")]//←このアトリビュートは無い
     string fuga;
 
+    [Range(0, 10)]
+    public int number2;
+
+    [ContextMenu("RandomNumber2")]
+    void RandomNumber2()
+    {
+        number2 = UnityEngine.Random.Range(0, 100);
+    }
+
+    [ContextMenu("ResetNumber2")]
+    void ResetNumber2()
+    {
+        number2 = 0;
+    }
+
     void Awake()
     {
         animator = GetComponent<Animator>();
+        Debug.Log("Awake");
+    }
+
+    void Start()
+    {
+        Debug.Log("Start");
+    }
+
+    public override void Update()
+    {
+        base.Update();
+        Debug.Log("Update");
     }
 
     void OnEnable()

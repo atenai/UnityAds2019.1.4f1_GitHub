@@ -22,7 +22,7 @@ public class ResouceLoad : MonoBehaviour
         //bundle.GetAllAssetNames()は全てのアセットのパスを確認する
         foreach (var n in bundle.GetAllAssetNames())
         {
-            Debug.Log(n);
+            //Debug.Log(n);
         }
         //↑アセットバンドルを全て取得してアセットがあるか？を確認するコード↑
     }
