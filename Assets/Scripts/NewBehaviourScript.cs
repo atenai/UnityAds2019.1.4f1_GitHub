@@ -116,6 +116,16 @@ public class NewBehaviourScript : Base
         Debug.Log("Update");
     }
 
+    [InitializeOnLoadMethod]//UnityEditor起動直後や、スクリプトコンパイル直後にクラスを呼び出すことが出来ます。
+    static void SaveConfig()
+    {
+        // 値を設定
+        EditorUserSettings.SetConfigValue("Data 1", "text");
+        // 値を取得（無かったらnull）
+        var value = EditorUserSettings.GetConfigValue("Data 1");
+        Debug.Log(value);
+    }
+
     void OnEnable()
     {
 #if UNITY_EDITOR
