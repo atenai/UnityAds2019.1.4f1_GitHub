@@ -123,7 +123,7 @@ public class NewBehaviourScript : Base
         EditorUserSettings.SetConfigValue("Data 1", "text");
         // 値を取得（無かったらnull）
         var value = EditorUserSettings.GetConfigValue("Data 1");
-        Debug.Log(value);
+        //Debug.Log(value);
     }
 
     void OnEnable()

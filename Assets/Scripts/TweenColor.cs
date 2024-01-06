@@ -19,6 +19,14 @@ public class TweenColor : MonoBehaviour
         };
 
         Debug.Log(JsonUtility.ToJson(list));
+
+        var SerializedList = new SerializableList<Example>
+        {
+            new Example(),
+            new Example()
+        };
+
+        Debug.Log(JsonUtility.ToJson(SerializedList));
     }
 
     public static string ToJson(string key, Object[] objs)
