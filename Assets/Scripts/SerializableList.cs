@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text.RegularExpressions;
 using UnityEngine;
+using System.Linq;
+using System.Runtime.InteropServices;
+using UnityEditor;
 
 [Serializable]
 public class SerializableList<T> : Collection<T>, ISerializationCallbackReceiver
@@ -25,6 +28,13 @@ public class SerializableList<T> : Collection<T>, ISerializationCallbackReceiver
         }
     }
 
+    public static string ToJson(string key, UnityEngine.Object[] objs)
+    {
+        var json = objs.Select(obj => EditorJsonUtility.ToJson(obj)).ToArray();
+        var values = string.Join(",", json);
+        return string.Format("{\"{0}\":{1}]}", key, values);
+    }
+
     public string ToJson()
     {
         var result = "[]";
@@ -37,5 +47,11 @@ public class SerializableList<T> : Collection<T>, ISerializationCallbackReceiver
         }
 
         return result;
+    }
+
+    public static SerializableList<T> FromJson(string arrayString)
+    {
+        var json = "{\"items\":" + arrayString + "}";
+        return JsonUtility.FromJson<SerializableList<T>>(json);
     }
 }

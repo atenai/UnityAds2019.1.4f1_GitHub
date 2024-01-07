@@ -27,14 +27,12 @@ public class TweenColor : MonoBehaviour
         };
 
         Debug.Log(JsonUtility.ToJson(SerializedList));
+
+        Debug.Log(SerializedList.ToJson());
+
+        var json = SerializedList.ToJson();
+        var serializableList = SerializableList<Example>.FromJson(json);
+        //Exampleオブジェクトが2つ取得できている
+        Debug.Log(serializableList.Count == 2);
     }
-
-    public static string ToJson(string key, Object[] objs)
-    {
-        var json = objs.Select(obj => EditorJsonUtility.ToJson(obj)).ToArray();
-        var values = string.Join(",", json);
-        return string.Format("{\"{0}\":{1}]}", key, values);
-    }
-
-
 }
