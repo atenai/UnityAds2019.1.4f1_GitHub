@@ -49,6 +49,25 @@ public class SerializableList<T> : Collection<T>, ISerializationCallbackReceiver
         return result;
     }
 
+    public string ToJson(bool prettyPrint = false)
+    {
+        var result = "[]";
+        var json = JsonUtility.ToJson(this, prettyPrint);
+        var pattern = prettyPrint ? "^\\{\n\\s+\"items\":\\s(?<array>.*)\n\\S+\\]\n}$" : "^{\"items\":(?<array>.*)}$";
+        var regex = new Regex(pattern, RegexOptions.Singleline);
+        var match = regex.Match(json);
+        if (match.Success)
+        {
+            result = match.Groups["array"].Value;
+            if (prettyPrint)
+            {
+                result += "\n]";
+            }
+        }
+
+        return result;
+    }
+
     public static SerializableList<T> FromJson(string arrayString)
     {
         var json = "{\"items\":" + arrayString + "}";
