@@ -21,4 +21,11 @@ public class ExampleAsset : ScriptableObject
         AssetDatabase.CreateAsset(exampleAsset, "Assets/Editor/ExampleAsset.asset");
         AssetDatabase.Refresh();
     }
+
+    [MenuItem("Example/LoadExampleAsset")]
+    static void LoadExampleAsset()
+    {
+        var exampleAsset = AssetDatabase.LoadAssetAtPath<ExampleAsset>("Assets/Editor/ExampleAsset.asset");
+        Debug.Log("<color=red>" + exampleAsset + "</color>");
+    }
 }
