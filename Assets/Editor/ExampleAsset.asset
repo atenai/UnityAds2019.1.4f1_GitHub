@@ -12,3 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1f6d5abdbc873b4c8ee30740feb9ecf, type: 3}
   m_Name: ExampleAsset
   m_EditorClassIdentifier: 
+  str: 
+  number: 0
